@@ -1,0 +1,130 @@
+﻿<Window x:Class="EG_2020_3909.AddUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EG_2020_3909"
+        mc:Ignorable="d"
+        Title="{Binding Title,UpdateSourceTrigger=PropertyChanged}" Height="450" Width="796"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
+
+    <Window.DataContext>
+        <local:AddUserVM/>
+    </Window.DataContext>
+    <Border                 
+            BorderThickness="2"
+            Opacity="0.85">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="796" />
+            </Grid.ColumnDefinitions>
+            <StackPanel
+            Width="800" Height="450" HorizontalAlignment="Left" 
+            VerticalAlignment="Center" Orientation="Vertical">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/Model/Images/image24.jpeg"
+                        Stretch="UniformToFill"
+                            Opacity="0.8"/>
+                </StackPanel.Background>
+                <TextBlock Margin="5" TextAlignment="Center"  FontWeight="Black" Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Width="200" FontSize="22"/>
+                <TextBlock Text="First Name:" FontWeight="Black" Margin="5"/>
+                <TextBox Text="{Binding Firstname, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 500 5  " Grid.Column="1"/>
+                <TextBlock Text="Last Name:"  FontWeight="Black" Margin="5" Grid.Row="1"/>
+                <TextBox Text="{Binding Lastname, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 500 5 " Grid.Column="1"/>
+                <TextBlock Text="Age:"  FontWeight="Black" Margin="5" Grid.Row="1"/>
+                <TextBox Text="{Binding Age, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 500 5 " Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Text="DateOfBirth:"  FontWeight="Black" Margin="5" Grid.Row="1"/>
+                <DatePicker SelectedDate="{Binding Dateofbirth, UpdateSourceTrigger=PropertyChanged}" Margin="5 5 500 5" Grid.Row="1" Grid.Column="1"/>
+
+                <TextBlock Text="GPA"  FontWeight="Black"  Margin="5" Grid.Row="1"/>
+                <TextBox IsReadOnly="False"  Text="{Binding Gpa ,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}" Margin="5 5 500 5 " Grid.Row="1" Grid.Column="1"/>
+                <Button Content="insert picture" Cursor="Hand" FontWeight="Black" Width="100" HorizontalAlignment="Left" Command="{Binding UploadPhotoCommand}" Margin="5,0,5,-30" Grid.Row="3" Grid.ColumnSpan="2" Background="#F7DC6F" Height="24">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="Auto" Height="Auto" Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+
+                <Button Content="Save"  Cursor="Hand" FontWeight="Black" Command="{Binding SaveCommand}" Background="#F7DC6F" Click="Button_Click" Height="30" Width="38" RenderTransformOrigin="0.484,2.196" Margin="375,63,387,-63">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border Width="Auto" Height="Auto" Background="{TemplateBinding Background}" CornerRadius="5">
+                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+            <Button Content="x" Background="#A569BD " Foreground="White" HorizontalAlignment="Left" Margin="760,0,0,0" VerticalAlignment="Top" Width="23" Height="20" 
+                            x:Name="btnClose"                          
+                            BorderThickness="0"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                         
+                            Click="btnClose_Click"/>
+
+
+
+
+            <Button Content="+" Background="#78281F" Foreground="White" HorizontalAlignment="Left" Margin="715,0,0,0" VerticalAlignment="Top" Width="21" Height="20"  
+                            x:Name="btnMaximize"                           
+                            BorderThickness="0"
+                          
+                          
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                           
+                            Click="btnMaximize_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="18" Height="18"
+                                        
+                                        Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+
+            <Button Content="-"  Background=" #F4D03F" Foreground="White" HorizontalAlignment="Left" Margin="672,0,0,0" VerticalAlignment="Top" Width="22" Height="20" 
+                            x:Name="btnMinimize"                           
+                            BorderThickness="0"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Click="btnMinimize_Click"
+                />
+
+        </Grid>
+    </Border>
+</Window>
